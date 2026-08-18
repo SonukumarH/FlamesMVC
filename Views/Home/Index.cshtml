@@ -1,0 +1,90 @@
+﻿@model FlamesMVC.Models.Inputs
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>FLAMES Calculator</title>
+
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+            }
+
+            .container {
+                width: 400px;
+                margin: 100px auto;
+                padding: 30px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #ccc;
+            }
+
+            input {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                cursor: pointer;
+            }
+
+            .result {
+                margin-top: 20px;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .error {
+                color: red;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>FLAMES Calculator</h1>
+
+        <form asp-controller="Home"
+              asp-action="Index"
+              method="post">
+
+            <label>Your Name</label>
+
+            <input asp-for="YourName"
+                   placeholder="Enter your name" />
+
+            <label>Partner Name</label>
+
+            <input asp-for="PartnerName"
+                   placeholder="Enter partner name" />
+
+            <button type="submit">
+                Calculate
+            </button>
+
+        </form>
+
+        @if (!string.IsNullOrEmpty(Model.Result))
+        {
+            <div class="result">
+                Result: <strong>@Model.Result</strong>
+            </div>
+        }
+
+        <div class="error">
+            @Html.ValidationSummary()
+        </div>
+
+    </div>
+
+</body>
+</html>
